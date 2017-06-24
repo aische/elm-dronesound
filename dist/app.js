@@ -9533,7 +9533,7 @@ var _user$project$Param$RangeParam = F3(
 		return {param: a, range: b, spec: c};
 	});
 
-var _user$project$Sound$initialSound = {note: 60, pan: 0.0, amp: 0.5, cutoff: 2.4};
+var _user$project$Sound$initialSound = {note: 60, pan: 1.0e-2, amp: 0.5, cutoff: 2.4};
 var _user$project$Sound$initialSounds = A2(_elm_lang$core$List$repeat, 1, _user$project$Sound$initialSound);
 var _user$project$Sound$cutoffParam = A3(
 	_user$project$Param$makeParam,
