@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Main8</title>
+<style>
+html,head,body { 
+    padding:0; 
+    margin:0; 
+    font-family: monospace;
+    font-size: 12px;
+}
+
+div.container {
+    position: relative; 
+    width: 100%; 
+}
+
+div.box {
+    position: relative;
+    border: 1px solid black;
+    padding: 15px;
+    margin: 15px;
+    float: left;
+}
+
+div.leftlabel {
+    position: absolute;
+    left: -10px;
+    top: 40%;
+    background-color: white;
+    color: red;
+}
+
+div.rightlabel {
+    position: absolute;
+    right: -10px;
+    top: 40%;
+    background-color: white;
+    color: red;
+}
+
+div.label {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: -30px;
+    height: 0px;
+}
+
+input[type=range] {
+    width: 80px;
+    margin: 0px 4px;
+    padding: 0px 4px;    
+}
+
+.svg1 .svg-circle {
+    stroke: red;
+    /*fill: blue;
+    */
+    stroke-width: 1;
+    stroke-opacity: 1;
+}
+
+.svg2 .svg-circle {
+    stroke: blue;
+    /*fill: hsla(40, 50%, 50%, 0.5);
+    */
+    stroke-width: 2;
+    stroke-opacity: 0.5;
+    
+}
+
+.svg3 .svg-circle {
+    stroke: green;
+    /*fill: white;*/
+    stroke-width: 2;
+    stroke-opacity: 1;
+}
+
+.slider-container {
+    position: relative;
+    width: 420px;
+    float: left;
+}
+
+.svg-container {
+    position: relative;
+    width: 620px;
+    float: left;
+}
+
+</style>
+<script type="text/javascript">
+
+</script>
+<script src="web-audio-api-shim.js"></script>
+<script src="SoundPlayer.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+<script>
+    var soundplayer = new SoundPlayer();
+    var app = Elm.Main.fullscreen();
+    app.ports.setSound.subscribe(function(args) {
+        soundplayer.setOsc(args[0], args[1].note, args[1].amp, args[1].pan, args[1].cutoff);
+        //console.log(args);
+        //soundplayer.play(args[0], args[1]);
+    });
+    app.ports.setSoundList.subscribe(function(list) {
+        soundplayer.setOscs(list);
+        //console.log(args);
+        //soundplayer.play(args[0], args[1]);
+    });
+    app.ports.removeSound.subscribe(function(key) {
+        soundplayer.removeOsc(key);
+        
+        //soundplayer.play(args[0], args[1]);
+    });
+    app.ports.setMasterVolume.subscribe(function(gain) {
+        //soundplayer.destination.gain.value = Math.max(0, Math.min(1, gain));
+        soundplayer.destination.gain.linearRampToValueAtTime(Math.max(0, Math.min(1, gain)), soundplayer.audiocontext.currentTime + 0.1);
+
+    });
+   
+</script>
+
