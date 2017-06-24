@@ -38,7 +38,7 @@ cutoffParam  = makeParam (1, 8) (.cutoff) (\a s -> {s | cutoff = a })
 
 
 initialSound : Sound
-initialSound = {note=60, pan=0.0, amp=0.5, cutoff=2.4}
+initialSound = {note=60, pan=0.01, amp=0.5, cutoff=2.4}
 
 
 initialSounds : List Sound
